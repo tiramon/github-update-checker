@@ -331,6 +331,10 @@ public final class SemanticVersion implements Comparable<SemanticVersion> {
 
 		vParts[0] = Integer.parseInt(new String(input, 0, pos), 10);
 
+		if (pos >= input.length) {
+			return false;
+		}
+
 		if (input[pos] == '.') {
 			return stateMinor(pos + 1);
 		}
@@ -348,6 +352,10 @@ public final class SemanticVersion implements Comparable<SemanticVersion> {
 			return false;
 		}
 		vParts[1] = Integer.parseInt(new String(input, index, pos - index), 10);
+
+		if (pos >= input.length) {
+			return false;
+		}
 
 		if (input[pos] == '.') {
 			return statePatch(pos + 1);
